@@ -1,0 +1,120 @@
+---
+title: "Style Guide"
+author: "Mohammed Quasem"
+output: html_notebook
+---
+Good coding style is an improtant communication tool. I may understand every part of my code as I understant why did things a certain way however when others have to follow my footsteps establishing style guide will be essential for consistency and clear communication. My style guide is based on Google’s R guide style.
+
+
+### File
+
+File names should end in .R
+
+Example:
+
+#Good
+
+Style.R
+
+Exercise1.R
+
+#Bad
+
+Style.r
+
+Exercise1.r
+
+If files have the same name indicate version by underscore
+
+Gender_2012.R
+
+Gender_2019.R
+
+### Obeject Names
+
+Variable and function names will be lowercase. I will make names that are concise and easy to understand.
+
+#Good
+
+data_1a
+
+Ex_1a
+
+#Bad
+
+Data1a
+
+Ex1a
+
+
+I will avoid using existing names in R
+
+#Bad
+
+T<-mean(data1$velocity)
+
+F<-sd(data1$jump)
+
+#Good
+
+mean_jump<-mean(data1$jump)
+
+stdev_jump<-sd(data1$jump)
+
+### Syntax
+
+#Spacing 
+
+I will put spaces around all operators and space after comma.
+
+#Good
+
+z_score_jump<- (data1$jump - mean_jump) / stdev_jump
+
+#Bad
+
+z_score_jump<-(data1$jump - mean_jump)/stdev_jump
+
+
+#Good
+
+jump_average <- mean(data1$jump / length(data1$jump) + inches, na.rm = TRUE)
+
+#Bad
+
+jump_average<-mean(data1$jump/length(data1$jump)+inches,na.rm=TRUE)
+
+### Line Length
+
+I will do my best not to exceed the 80 character length per line.
+
+### Assignment
+
+I will use <- not =
+
+#Good
+
+jump<- data1$jump
+
+#Bad
+
+jump= data1$jump
+
+### Comment
+
+I will use # and space to comment on what the line of code is doing
+
+#Good
+
+
+:# This code is calculating the z score for the jump variable in Data1 and
+storing the z scores as z_score_jump
+
+z_score_jump<- (data1$jump - mean_jump) / stdev_jump
+
+### Chunks
+
+I will break down the codes into smaller chunks.
+
+I will run the chunks by clicking the *Run* button within the chunk or by placing cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
