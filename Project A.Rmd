@@ -1,0 +1,352 @@
+---
+title: "Project A"
+author: "Mohammed Quasem"
+output: html_notebook
+---
+
+
+```{r include=FALSE}
+# The "here" library will let me read the data from an individual folder.
+
+library(here)
+
+# I read the data and put it in an object called "full_data".
+full_data <- read.csv(here("guns-data", "full_data.csv"), header = TRUE, sep = ",")
+subset_2012<-subset(full_data,year==2012)
+# intent, sex and race are categorical variables, so I set them as factors.
+
+subset_2012$intent <- factor(subset_2012$intent,
+                       labels = c("Accidental", "Homicide", "Suicide", "Undetermined"))
+
+subset_2012$sex  <- factor(subset_2012$sex, labels = c("F", "M")) 
+
+subset_2012$race <- factor(subset_2012$race, labels = c("Asian/Pacific Islander", "Black", "Hispanic", "Native American/Native Alaskan", "White"))
+
+```
+### Description
+
+This report will answer the question 2 of project A. The data for this study is from The website FiveThirtyEight published an interactive graphic titled Gun Deaths in America that illustrated the nature of gun deaths for the years 2012 to 2014. The data and code for the project were in a GitHub repo. The data and code was retrieved by Fork and clone placed in this Gun Data repo.
+*Source of data: Five Thirty Eight*
+
+### Analysis
+
+In this data set, I divided intent into four categories: Accidental, Homicide, Suicide, Undetermined
+Gender into two categorlies: F, M
+Race into five categories: Asian/Pacific Islander, Black, Hispanic, Native American/Native Alaskan, White.
+
+\newpage
+
+***
+
+*Figure 1. Bar plots with proportion of 2012 subset of intent of gun death*
+*Intent of Gun Deaths.*
+
+```{r echo=FALSE}
+# I calculated the frequencies of intent.
+
+Intent_2012 <- table(subset_2012$intent)
+
+# I calculated the proportions of gun death intent categories.
+
+Intent.props_2012<-prop.table(Intent_2012)
+
+# I constructed a bar graph using these proportions.
+
+barplot(Intent.props_2012, xlab = "Intent_2012", ylab = "Proportion", ylim = c(0, 0.70))
+abline(h=0)
+
+```
+***
+
+```{r include=FALSE}
+
+# I put the frequencies and proportions in a table.
+
+cbind(Intent_2012, Intent.props_2012)
+
+```
+The Intent of gun death in 2012 consists of 1.63% in Accidental category, 36.03% in Homicide category, 61.57% in Suicide category,
+and 0.76% in Undetermined category.
+
+\newpage
+
+***
+
+*Figure 2. Bar plots with proportion of 2012 gun deaths by subset of* 
+*Gender.*
+
+```{r echo=FALSE}
+# I calculated the frequencies of Gender.
+
+Gender_2012 <- table(subset_2012$sex)
+
+# I calculated the proportions of gun death by Gender categories.
+
+Gender.props_2012<-prop.table(Gender_2012)
+
+# I constructed a bar graph using these proportions.
+
+barplot(Gender.props_2012, xlab = "Gender_2012", ylab = "Proportion", ylim = c(0, 0.90))
+abline(h=0)
+```
+***
+
+```{r include=FALSE}
+
+# I put the frequencies and proportions of gender in a table.
+
+cbind(Gender_2012, Gender.props_2012)
+
+```
+Gender category of gun death consists of 14.08% females and 85.92% males.
+
+\newpage
+
+***
+
+*Figure 3. Bar plots with percent of gun deaths in ethnic groups category.*
+
+```{r echo=FALSE}
+# I calculated the frequencies of gun death by race categories.
+
+Race_2012<-table(subset_2012$race)
+
+# I calculated the proportions of gun death by race categories.
+
+Race.props_2012<-prop.table(Race_2012)
+
+# I constructed a bar graph using these proportions.
+
+barplot(Race.props_2012, xlab = "Race_2012", ylab = "Proportion", ylim = c(0, 0.90))
+abline(h=0)
+
+```
+
+```{r include=FALSE}
+# I put the frequencies and proportions of gun deaths by race in a table.
+
+cbind(Race_2012, Race.props_2012)
+
+```
+In race category 64.93% white, 23.67% black, 9.12% hispanic, 1.35%
+Asian/Pacific Islander and 0.92% Native American/Native Alaskan gun
+deaths took place.
+
+---
+title: "Project A"
+---
+
+```{r include=FALSE}
+# intent, sex and race are categorical variables, so I set them as factors.
+all_guns$intent <- factor(all_guns$intent,
+                       labels = c("Accidental", "Homicide", "Suicide", "Undetermined"))
+
+all_guns$sex  <- factor(all_guns$sex, labels = c("F", "M")) 
+
+all_guns$race <- factor(all_guns$race, labels = c("Asian/Pacific Islander", "Black", "Hispanic", "Native American/Native Alaskan", "White"))
+
+```
+\newpage
+
+***
+
+*Figure 4. Bar plots with proportion of 2019 subset of intent of gun death*
+*Intent of Gun Deaths.*
+
+```{r echo=FALSE}
+Intent_2019 <- table(all_guns$intent)
+
+# I calculated the proportions of gun death intent categories.
+
+Intent.props_2019<-prop.table(Intent_2019)
+
+# I constructed a bar graph using these proportions.
+
+barplot(Intent.props_2019, xlab = "Intent_2019", ylab = "Proportion", ylim = c(0, 0.70))
+abline(h=0)
+
+```
+***
+
+```{r include=FALSE}
+
+# I put the frequencies and proportions in a table.
+
+cbind(Intent_2019, Intent.props_2019)
+
+```
+The Intent of gun death in 2019 consists of 1.22% in Accidental category, 37.57% in Homicide category, 60.33% in Suicide category, and 0.87% in Undetermined category.
+
+\newpage
+
+***
+
+*Figure 5. Bar plots with proportion of 2019 gun deaths by subset of* 
+*Gender.*
+```{r echo=FALSE}
+Gender_2019 <- table(all_guns$sex)
+
+# I calculated the proportions of gun death by Gender categories.
+
+Gender.props_2019<-prop.table(Gender_2019)
+
+# I constructed a bar graph using these proportions.
+
+barplot(Gender.props_2019, xlab = "Gender_2019", ylab = "Proportion", ylim = c(0, 0.90))
+abline(h=0)
+
+```
+***
+
+```{r include=FALSE}
+# I put the frequencies and proportions in a table by gender gun death.
+
+cbind(Gender_2019, Gender.props_2019)
+
+```
+In 2019 Gender category of gun death consists of 14.26% females and 85.73% males.
+
+\newpage
+
+***
+
+*Figure 6. Bar plots with percent of gun deaths in ethnic groups category in 2019.*
+
+```{r echo=FALSE}
+
+# I calculated the proportions of gun death by 2019 race categories.
+
+Race_2019<-table(all_guns$race)
+
+Race.props_2019<-prop.table(Race_2019)
+
+# I constructed a bar graph using these proportions.
+
+barplot(Race.props_2019, xlab = "Race_2019", ylab = "Proportion", ylim = c(0, 0.70))
+
+abline(h=0)
+```
+```{r include=FALSE}
+# I put the frequencies and proportions of gun deaths by race in a table.
+
+cbind(Race_2019, Race.props_2019)
+
+```
+In 2019 race category 60.98% white, 26.21% black, 10.22% hispanic, 1.61%
+Asian/Pacific Islander and 0.97% Native American/Native Alaskan gun
+deaths took place.
+
+\newpage
+
+***
+
+*Figure 7. Bar plots with percent of gun deaths in intent category in 2012 and 2019.*
+
+### Description
+
+This report will answer the question 7 of project A.
+
+```{r include=TRUE}
+# I put the frequencies and proportions of gun deaths by intent by year.
+
+cbind(Intent_2012, Intent_2019)
+cbind(Intent.props_2012, Intent.props_2019)
+
+```
+
+The Intent of gun death from 2012 to 2019 is showing Homicide increased
+by 1.5 percentage point, suicide decreased by 1.24 percentage points and the other categories accidental and undetermined decreased less than 0.5 percentage points.
+
+
+\newpage
+
+***
+
+*Figure 7. Bar plots with percent of gun deaths in ethnic groups category in 2012 and 2019.*
+
+```{r echo=FALSE}
+
+# I constructed a bar graph using these proportions.
+# First I split the graphing window so that two bar plots will be split
+par(mfrow=c(2,1))
+barplot(Intent.props_2012, xlab = "Intent_2012", ylab = "Proportion", ylim = c(0, 0.70))
+abline(h=0)
+barplot(Intent.props_2019, xlab = "Intent_2019", ylab = "Proportion", ylim = c(0, 0.70))
+abline(h=0)
+
+```
+From the barplot no discernible significant changes in intent of gun death from 2012 to 2019.
+\newpage
+
+***
+
+*Figure 8. Bar plots with percent of gun deaths in gender category in 2012 and 2019.*
+
+```{r include=TRUE}
+# I put the frequencies and proportions of gun deaths by intent by year.
+
+cbind(Gender_2012, Gender_2019)
+cbind(Gender.props_2012, Gender.props_2019)
+
+```
+From the table we do not see a huge change from 2012 to 2019 about 0.19 percentage less female gun death and 0.19 percentage less male gun death from
+2012 to 2019.
+
+```{r echo=FALSE}
+# I constructed a bar graph using these proportions.
+# First I split the graphing window so that two bar plots will be split
+par(mfrow=c(2,1))
+barplot(Gender.props_2012, xlab = "Gender_2012", ylab = "Proportion", ylim = c(0, 0.70))
+abline(h=0)
+barplot(Gender.props_2019, xlab = "Gender_2019", ylab = "Proportion", ylim = c(0, 0.70))
+abline(h=0)
+```
+No big changes by observing the barplots.
+
+\newpage
+
+***
+
+*Figure 9. Bar plots with percent of gun deaths by race category in 2012 and 2019.*
+
+```{r include=TRUE}
+# I put the frequencies and proportions of gun deaths by intent by year.
+
+cbind(Race_2012, Race_2019)
+cbind(Race.props_2012, Race.props_2019)
+
+```
+From the table we can see from 2012 to 2019, 0.3 percentage more Asian/Pacific Islander gun death, 2.54 percentage more Black gun deaths, 1.8 percentage more Hispanic gun deaths and 4 percentage less white gun deaths.
+
+```{r echo=FALSE}
+# I constructed a bar graph using the race proportions.
+# First I split the graphing window so that two bar plots will be split
+par(mfrow=c(2,1))
+barplot(Race.props_2012, xlab = "Race_2012", ylab = "Proportion", ylim = c(0, 0.70))
+abline(h=0)
+barplot(Race.props_2019, xlab = "Gender_2019", ylab = "Proportion", ylim = c(0, 0.70))
+abline(h=0)
+```
+
+***
+
+### Conclusions
+
+This project asked to look at selected variables Intent, gender and race for 2012 and 2019 gun death data individually and also comparing them side by side.
+
+Individually both 2012 and 2019 showed with variable intent of gun deaths that suicide was the highest category with 61.57% and followed by Homicide at 36.03%. The 2019 data also shows Suicide in highest category with 60.33% followed by  Homicide at 37.57%.
+
+Gender variable shows both 2012 and 2019 Male is in majority with gun death at 85.92% and 85.73% respectively and Female with 14.08% and 14.26% respectively. 
+
+Race variable in 2012 and 2019 the gun death White was the highest 64.93% and 60.98% respectively. Black was next highest gun deaths with 23.67% and 26.22% respectively in 2012 and 2019. 
+
+
+Comparing side by 2012 and 2019 intent of gun deaths revealed the following:
+Homicide increased by 1.5 percentage point, suicide decreased by 1.24 percentage points and the other categories accidental and undetermined decreased less than 0.5 percentage points.
+
+Gender variable compared to 2012 and 2019 gun deaths revealed about 0.19 percentage more female gun death and 0.19 percentage less male gun death percentage decrease. The interesting change is while male percentage points decreased the female percentage points decreased about the same percentage points.  
+
+Race variable from 2012 to 2019 regarding gun deaths there were some changes.
+The comparison reveals 0.3 percentage more Asian/Pacific Islander gun death, 2.54 percentage more Black gun deaths, 1.8 percentage more Hispanic gun deaths and 4 percentage less white gun deaths. So White category was the highest change with 4% less gun deaths followed by Black gun deaths increase by 2.54%.
+
+In conclusion this would be a preliminary analysis and there is much more to be looked at depth in future analysis.
